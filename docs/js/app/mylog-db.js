@@ -59,9 +59,10 @@ class MyLogDb {
         }
         else { return `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}` } // 同じ日
     }
-    #toContent(content) {
-        return content.replace(/\r\n|\n/g, '<br>')
-    }
+    #toContent(content) { return TextToHtml.toHtml(content) } 
+    //#toContent(content) {
+    //    return content.replace(/\r\n|\n/g, '<br>')
+    //}
     #toDeleteCheckbox(id) {
         return `<label><input type="checkbox" name="delete" value="${id}">❌<label>`
     }
