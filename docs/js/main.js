@@ -13,7 +13,8 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         const content = document.getElementById('content').value
         if (!content) { alert('つぶやく内容をテキストエリアに入力してください。'); return; }
         if (LENGTH < content.length) { alert(`つぶやく内容は${LENGTH}字以内にしてください。`); return; }
-        if (LINE < content.match(/\r\n|\n/g).length) { alert(`つぶやく内容は${LINE}行以内にしてください。`); return; }
+        const match = content.match(/\r\n|\n/g)
+        if (match && LINE < match.length) { alert(`つぶやく内容は${LINE}行以内にしてください。`); return; }
         const now = Math.floor(new Date().getTime() / 1000)
         const insHtml = await db.insert(content, now)
         document.getElementById('post-list').innerHTML = insHtml + document.getElementById('post-list').innerHTML
